@@ -1,3 +1,5 @@
+import random
+
 def remove_cells(board, cells_to_remove):
     removed = []
     for i in range(0, cells_to_remove + 1):
