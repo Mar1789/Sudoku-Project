@@ -1,5 +1,7 @@
 select_count = 0
 
+def place_number(value, board, row, col):
+    board[row][col] = int(value)
 
 def clear(board):
     pass
@@ -42,7 +44,7 @@ def check_board(board):
     temp = 0
     cols = 0
     for row in board:
-        for i in range(0, 9):
+        for i in range(0, len(row)):
             test.append(board[i][cols])
         for number in test:
             if number in number_list:
