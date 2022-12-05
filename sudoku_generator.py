@@ -69,6 +69,7 @@ class SudokuGenerator:
         rrow = int(row)
         ccol = int(col)
 
+        # statements below ensure proper checking of boxes for valid_in_box
         if row in [0, 1, 2]:
             rrrow = 0
         elif row in [3, 4, 5]:
@@ -83,6 +84,7 @@ class SudokuGenerator:
         else:
             cccol = 6
 
+        # nested checks of validity
         if self.valid_in_row(rrow, num):
             if self.valid_in_col(ccol, num):
                 if self.valid_in_box(rrrow, cccol, num):
@@ -94,6 +96,7 @@ class SudokuGenerator:
         else:
             return False
 
+    # fills boxes on diagonal
     def fill_box(self, row_start, col_start):
         for i in range(row_start, row_start + 3):
             for j in range(col_start, col_start + 3):
@@ -155,7 +158,7 @@ class SudokuGenerator:
                 self.board[c_row][c_col] = 0
 
     # below custom
-
+    # function returns which numbers haven't yet been used in a box
     def unused_in_box(self, row_start, col_start):
         used_in_box = []
         nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
