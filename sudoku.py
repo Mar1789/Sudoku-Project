@@ -1,4 +1,6 @@
 from sudoku_generator import *
+from board import *
+from remove_cells import *
 
 program_running = True
 sudoku_difficulty = 0
@@ -23,11 +25,11 @@ while program_running:
             program_running = False
         else:
             print("Error: Incorrect command")
-    else: #runs when difficulty is selected
+    elif sudoku_difficulty == 1 or sudoku_difficulty == 2 or sudoku_difficulty == 3: #runs when difficulty is selected
         print("You can choose 'edit' to edit the board or 'reset' to reset to board.")
         print("You can also type 'restart' to return to the difficulty select or 'exit' to exit the program.")
         full_board = generate_sudoku(9, 0)
-        #sudoku_board = (function)
+        sudoku_board = remove_cells(full_board,20+10(sudoku_difficulty))
         sudoku_running = True
         while sudoku_running:
             index_row = 0
@@ -44,11 +46,10 @@ while program_running:
                 user_row = int(input("Enter the row from the top you want to edit. "))
                 user_column = int(input("Enter the column from the left you want to edit. "))
                 #####user_number = int(input("Enter the number you want to change. "))
-                
-                #change board stuff
-                
+                sudoku_board = select(sudoku_board,user_row,user_column)
+                update_board(sudoku_board)
             elif user_inpt == 'reset':
-                pass #reset to original
+                reset_to_original()
             elif user_inpt == 'restart':
                 sudoku_difficulty = 0
             elif user_inpt == 'exit':
@@ -56,5 +57,13 @@ while program_running:
                 sudoku_running = False
             else:
                 print("Error: Incorrect command")
-
-            #board testing
+            if is_full(sudoku_board,0) == True:
+                sudoku_running = False
+                if check_board(sudoku_board,full_board) == True:
+                    difficulty = -1
+                else:
+                    difficulty = -2
+    else:
+        print("Error: Incorrect sudoku_difficulty")
+        print("Difficulties: '1' for Easy, '2' for Medium, and '3' for Hard.")
+        sudoku_difficulty = int(input("Choose Difficulty: "))
