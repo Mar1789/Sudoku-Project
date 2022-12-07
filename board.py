@@ -2,12 +2,6 @@ select_count = 0
 original_board = None
 cur_board = None
 
-def place_number(value, board, row, col):
-    global cur_board
-    board[row][col] = int(value)
-    cur_board = board
-
-
 def clear(board):
     pass
 
@@ -68,9 +62,12 @@ def check_board(board,correct_board):
     else:
         return False
 
-def reset_to_original():
+def reset_to_original(sudoku_board):
     global cur_board
     global original_board
-    if cur_board != original_board:
-        cur_board = original_board
-        return cur_board
+    global select_count
+    if select_count == 0:
+        original_board = sudoku_board
+    cur_board = original_board
+    select_count = 0
+    return cur_board

@@ -41,7 +41,7 @@ while program_running:
                 #####user_number = int(input("Enter the number you want to change. "))
                 sudoku_board = select(sudoku_board,user_row,user_column)
             elif user_inpt == 'reset':
-                sudoku_board = reset_to_original()
+                sudoku_board = reset_to_original(sudoku_board)
             elif user_inpt == 'restart':
                 sudoku_difficulty = 0
                 sudoku_running = False
