@@ -29,29 +29,22 @@ while program_running:
         print("You can choose 'edit' to edit the board or 'reset' to reset to board.")
         print("You can also type 'restart' to return to the difficulty select or 'exit' to exit the program.")
         full_board = generate_sudoku(9, 0)
-        sudoku_board = remove_cells(full_board,20+10(sudoku_difficulty))
+        sudoku_board = remove_cells(full_board,20+10*(sudoku_difficulty))
         sudoku_running = True
         while sudoku_running:
-            index_row = 0
-            for row in sudoku_board: #print board with single digit and spaced out by box
-                for index_column in range(0,len(row)):
-                    print(f"{row[index_column]}", end=" ")
-                    if (index_column+1)%3 == 0 and index_column != 0: #third number double space
-                        print(end=" ")
-                print("")
-                if (index_row+1)%3 == 0 and index_row != 0: #third column space
-                    print("")
+            print("")
+            update_board(sudoku_board)
             user_inpt = input("What do you want to do? ")
             if user_inpt == 'edit':
                 user_row = int(input("Enter the row from the top you want to edit. "))
                 user_column = int(input("Enter the column from the left you want to edit. "))
                 #####user_number = int(input("Enter the number you want to change. "))
                 sudoku_board = select(sudoku_board,user_row,user_column)
-                update_board(sudoku_board)
             elif user_inpt == 'reset':
-                reset_to_original()
+                sudoku_board = reset_to_original()
             elif user_inpt == 'restart':
                 sudoku_difficulty = 0
+                sudoku_running = False
             elif user_inpt == 'exit':
                 program_running = False
                 sudoku_running = False

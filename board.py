@@ -20,17 +20,17 @@ def select(board, row, col):
         original_board = board
     for index_rows, rows, in enumerate(board):
         for index_cols, cols in enumerate(rows):
-            if index_rows == row and index_cols == col:
+            if index_rows+1 == row and index_cols+1 == col:
                 #option = input("Would you like to edit the value or sketch?")
                 #if option == 'edit':
-                value = input("Please entered the desired value")
-                place_number(value, board, row, col)
+                value = input("Please entered the desired value. ")
+                place_number(value, board, row-1, col-1)
                 select_count += 1
                 return cur_board
 
 
-def place_number(value, board, row, cols):
-    board[row][cols] = int(value)
+def place_number(value, board, row, col):
+    board[row][col] = int(value)
     global cur_board
     cur_board = board
 
@@ -42,9 +42,10 @@ def update_board(sudoku_board):
             print(f"{row[index_column]}", end=" ")
             if (index_column+1)%3 == 0 and index_column != 0: #third number double space
                 print(end=" ")
+        print("")
+        if (index_row+1)%3 == 0 and index_row != 0: #third column space
             print("")
-            if (index_row+1)%3 == 0 and index_row != 0: #third column space
-                print("")
+        index_row += 1
 
 
 def is_full(board, empty):
@@ -72,6 +73,4 @@ def reset_to_original():
     global original_board
     if cur_board != original_board:
         cur_board = original_board
-        return True
-    else:
-        return False
+        return cur_board

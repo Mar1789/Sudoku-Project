@@ -13,3 +13,4 @@ def remove_cells(board, cells_to_remove):
                 c_row = int(round(random.random() * 8, 0))
                 c_col = int(round(random.random() * 8, 0))
             board[c_row][c_col] = 0
+    return board
