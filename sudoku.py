@@ -12,7 +12,7 @@ while program_running:
     elif sudoku_difficulty == -1: #runs when board is full and correct
         user_inpt = input("You WON! Type 'restart' to return to the difficulty select or 'exit' to exit the program.")
         if user_inpt == 'restart':
-            difficulty = 0
+            sudoku_difficulty = 0
         elif user_inpt == 'exit':
             program_running = False
         else:
@@ -20,7 +20,7 @@ while program_running:
     elif sudoku_difficulty == -2: #runs when board is full and incorrect
         user_inpt = input("You LOST! Type 'restart' to return to the difficulty select or 'exit' to exit the program.")
         if user_inpt == 'restart':
-            difficulty = 0
+            sudoku_difficulty = 0
         elif user_inpt == 'exit':
             program_running = False
         else:
@@ -53,9 +53,9 @@ while program_running:
             if is_full(sudoku_board,0) == True:
                 sudoku_running = False
                 if check_board(sudoku_board,full_board) == True:
-                    difficulty = -1
+                    sudoku_difficulty = -1
                 else:
-                    difficulty = -2
+                    sudoku_difficulty = -2
     else:
         print("Error: Incorrect sudoku_difficulty")
         print("Difficulties: '1' for Easy, '2' for Medium, and '3' for Hard.")
